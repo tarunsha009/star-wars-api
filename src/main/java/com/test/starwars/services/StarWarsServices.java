@@ -59,7 +59,6 @@ public class StarWarsServices {
                 break;
             default:
                 responseEntity = new ResponseEntity<>("No such Option", HttpStatus.BAD_REQUEST);
-                System.out.println(command + " is not a available command");
                 break;
         }
         return responseEntity;

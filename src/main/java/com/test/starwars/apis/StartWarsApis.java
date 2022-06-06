@@ -20,14 +20,6 @@ public class StartWarsApis {
 
     @GetMapping("search/starwars/")
     public ResponseEntity<?> searchApi(@RequestParam("type") Type command, @RequestParam("name") String query){
-        ResponseEntity<?> responseEntity = services.searchAPI(command.toString().toUpperCase(Locale.ROOT), query);
-        return responseEntity;
+        return services.searchAPI(command.toString().toUpperCase(Locale.ROOT), query);
     }
-
-    @GetMapping("starwars")
-    public ResponseEntity<?> searchApi2(@RequestParam("type") Type command, @RequestParam("name") String query){
-        ResponseEntity<?> responseEntity = services.searchAPI(command.toString().toUpperCase(Locale.ROOT), query);
-        return responseEntity;
-    }
-
 }

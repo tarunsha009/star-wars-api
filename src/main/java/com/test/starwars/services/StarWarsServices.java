@@ -28,34 +28,40 @@ public class StarWarsServices {
     @Autowired
     private VehiclesRepository vehiclesRepository;
 
-    // FILMS, PEOPLE, PLANETS, SPECIES, STARSHIPS, VEHICLES
-
     public ResponseEntity<?> searchAPI(String command, String query) {
-        //Command commands;
-        if(command.equals("PEOPLE")){
-            PeopleDTO peopleDTO = peopleRepository.execute(command, query);
-            return new ResponseEntity<>(peopleDTO, HttpStatus.OK);
+
+        ResponseEntity<?> responseEntity;
+
+        switch (command){
+            case "PEOPLE":
+                PeopleDTO peopleDTO = peopleRepository.execute(command, query);
+                responseEntity = new ResponseEntity<>(peopleDTO, HttpStatus.OK);
+                break;
+            case "PLANETS":
+                PlanetDTO planetDTO = planetRepository.execute(command, query);
+                responseEntity = new ResponseEntity<>(planetDTO, HttpStatus.OK);
+                break;
+            case "SPECIES":
+                SpeciesDTO speciesDTO = speciesRepository.execute(command, query);
+                responseEntity = new ResponseEntity<>(speciesDTO, HttpStatus.OK);
+                break;
+            case "STARSHIPS":
+                StarshipsDTO starshipsDTO = starshipsRepository.execute(command, query);
+                responseEntity = new ResponseEntity<>(starshipsDTO, HttpStatus.OK);
+                break;
+            case "VEHICLES":
+                VehiclesDTO vehiclesDTO = vehiclesRepository.execute(command, query);
+                responseEntity = new ResponseEntity<>(vehiclesDTO, HttpStatus.OK);
+                break;
+            case "FILMS":
+                FilmsDTO filmsDTO = filmsRepository.execute(command, query);
+                responseEntity = new ResponseEntity<>(filmsDTO, HttpStatus.OK);
+                break;
+            default:
+                responseEntity = new ResponseEntity<>("No such Option", HttpStatus.BAD_REQUEST);
+                System.out.println(command + " is not a available command");
+                break;
         }
-        else if(command.equals("PLANETS")){
-            PlanetDTO planetDTO = planetRepository.execute(command, query);
-            return new ResponseEntity<>(planetDTO, HttpStatus.OK);
-        }
-        else if(command.equals("SPECIES")){
-            SpeciesDTO speciesDTO = speciesRepository.execute(command, query);
-            return new ResponseEntity<>(speciesDTO, HttpStatus.OK);
-        }
-        else if(command.equals("STARSHIPS")){
-            StarshipsDTO starshipsDTO = starshipsRepository.execute(command, query);
-            return new ResponseEntity<>(starshipsDTO, HttpStatus.OK);
-        }
-        else if(command.equals("VEHICLES")){
-            VehiclesDTO vehiclesDTO = vehiclesRepository.execute(command, query);
-            return new ResponseEntity<>(vehiclesDTO, HttpStatus.OK);
-        }
-        else if(command.equals("FILMS")){
-            FilmsDTO filmsDTO = filmsRepository.execute(command, query);
-            return new ResponseEntity<>(filmsDTO, HttpStatus.OK);
-        }
-        return new ResponseEntity<>("No such Option", HttpStatus.BAD_REQUEST);
+        return responseEntity;
     }
 }

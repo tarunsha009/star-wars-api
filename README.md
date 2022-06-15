@@ -23,6 +23,9 @@ Request param : type [Planets, Spaceships, Vehicles, Peoples, Films and Species]
 
 Request Param : name [Any Object]
 
+## Work Flow
+
+![alt text](https://github.com/tarunsha009/star-wars-api/blob/main/starwars.png)
 
 
 
